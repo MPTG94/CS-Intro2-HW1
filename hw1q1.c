@@ -4,9 +4,14 @@
 
 #include <stdio.h>
 
+/**
+ * Functions definitions
+*/
 int calculate_check_digit();
 
 int validate_id();
+
+int add_input_to_sum(int input, int i);
 
 void print_request_choice_message();
 
@@ -26,9 +31,18 @@ void print_illegal_id_message();
 
 void print_error_message();
 
+/**
+ * Defines
+ */
 #define CALCULATE_ID_CHAR 'C'
 #define VALIDATE_ID_CHAR 'V'
 #define ZERO_CHAR '0'
+#define ID_LENGTH 9
+#define CALC_INPUT_LENGTH 8
+#define MAX_SINGLE_DIGIT 9
+#define MOD_2 2
+#define MOD_10 10
+#define TEN 10
 
 int main() {
     char choice;
@@ -48,59 +62,55 @@ int main() {
     return 0;
 }
 
+/**
+ * Takes an ID without the CheckDigit as input and prints the CheckDigit
+ * @return -1 if there's an input error, 0 otherwise
+ */
 int calculate_check_digit() {
     print_calculating_check_digit();
     int sum = 0;
     char input = 0;
-    int temp = 0;
     int result = 0;
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < CALC_INPUT_LENGTH; i++) {
         scanf(" %c", &input);
-        if ((int) (input - ZERO_CHAR) >= 0 && (int) (input - ZERO_CHAR) <= 9) {
-            temp = (int) (input - ZERO_CHAR) * ((i % 2) + 1);
-            if (temp > 9) {
-                sum += temp - 9;
-            } else {
-                sum += temp;
-            }
+        if ((int) (input - ZERO_CHAR) >= 0 &&
+            (int) (input - ZERO_CHAR) <= MAX_SINGLE_DIGIT) {
+            sum += add_input_to_sum(input, i);
         } else {
             print_error_message();
             return -1;
         }
-
     }
-    result = 10 - sum % 10;
+    result = TEN - sum % MOD_10;
     print_check_digit_result(result);
     return 0;
 }
 
+/**
+ * Takes as input an ID and prints if the ID is legal or not
+ * @return -1 if there's an input error, 0 otherwise
+ */
 int validate_id() {
     print_validating_id();
     int sum = 0;
     char input = 0;
-    int temp = 0;
     int user_check_digit = 0;
     int result = 0;
-    for (int i = 0; i < 9; i++) {
+    for (int i = 0; i < ID_LENGTH; i++) {
         scanf(" %c", &input);
-        if ((int) (input - ZERO_CHAR) >= 0 && (int) (input - ZERO_CHAR) <= 9) {
+        if ((int) (input - ZERO_CHAR) >= 0 &&
+            (int) (input - ZERO_CHAR) <= MAX_SINGLE_DIGIT) {
             if (i == 8) {
                 user_check_digit = (int) (input - ZERO_CHAR);
             } else {
-                temp = (int) (input - ZERO_CHAR) * ((i % 2) + 1);
-                if (temp > 9) {
-                    sum += temp - 9;
-                } else {
-                    sum += temp;
-                }
+                sum += add_input_to_sum(input, i);
             }
         } else {
             print_error_message();
             return -1;
         }
-
     }
-    result = 10 - sum % 10;
+    result = TEN - sum % MOD_10;
     print_validate_id_input(user_check_digit);
     print_validate_id_result(result);
     if (result == user_check_digit) {
@@ -108,10 +118,23 @@ int validate_id() {
     } else {
         print_illegal_id_message();
     }
-
     return 0;
 }
 
+int add_input_to_sum(int input, int i) {
+    // Multiply every digit by it's weight
+    int temp = (int) (input - ZERO_CHAR) * ((i % MOD_2) + 1);
+    // Weighted number is larger than 10, calculating sum of decimals
+    if (temp > MAX_SINGLE_DIGIT) {
+        return temp - MAX_SINGLE_DIGIT;
+    } else {
+        return temp;
+    }
+}
+
+/**
+ * Printing functions
+ */
 void print_request_choice_message() {
     printf("Please enter the letter C for calculating CheckDigit and the letter V for validating an ID by its CheckDigit:\n");
 }
