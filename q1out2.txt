@@ -1,0 +1,8 @@
+Please enter the letter C for calculating CheckDigit and the letter V for validating an ID by its CheckDigit:
+
+Validating ID, please enter 9 digits ID:
+
+You have entered CheckDigit = 2
+Calculated CheckDigit = 2
+
+Legal ID :)

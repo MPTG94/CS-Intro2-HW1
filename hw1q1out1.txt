@@ -1,0 +1,5 @@
+Please enter the letter C for calculating CheckDigit and the letter V for validating an ID by its CheckDigit:
+
+Calculating CheckDigit, please enter 8 digits:
+
+CheckDigit = 2

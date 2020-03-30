@@ -1,0 +1,4 @@
+cmake-build-debug-mingw\hw1q1.exe < .\hw1q1in1.txt > .\q1out1.txt
+cmake-build-debug-mingw\hw1q1.exe < .\hw1q1in2.txt > .\q1out2.txt
+cmake-build-debug-mingw\hw1q1.exe < .\hw1q1in3.txt > .\q1out3.txt
+
