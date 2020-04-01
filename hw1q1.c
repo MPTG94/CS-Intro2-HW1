@@ -81,7 +81,11 @@ int calculate_check_digit() {
             return -1;
         }
     }
-    result = TEN - sum % MOD_10;
+    if (sum % MOD_10 == 0) {
+        result = 0;
+    } else {
+        result = TEN - sum % MOD_10;
+    }
     print_check_digit_result(result);
     return 0;
 }
@@ -110,7 +114,11 @@ int validate_id() {
             return -1;
         }
     }
-    result = TEN - sum % MOD_10;
+    if (sum % MOD_10 == 0) {
+        result = 0;
+    } else {
+        result = TEN - sum % MOD_10;
+    }
     print_validate_id_input(user_check_digit);
     print_validate_id_result(result);
     if (result == user_check_digit) {
