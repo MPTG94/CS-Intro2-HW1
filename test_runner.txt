@@ -28,3 +28,5 @@ cmake-build-debug-mingw\hw1q2.exe < .\q2cust20.txt > .\q2cout20.txt
 cmake-build-debug-mingw\hw1q2.exe < .\q2cust21.txt > .\q2cout21.txt
 cmake-build-debug-mingw\hw1q2.exe < .\q2cust22.txt > .\q2cout22.txt
 cmake-build-debug-mingw\hw1q2.exe < .\q2cust23.txt > .\q2cout23.txt
+cmake-build-debug-mingw\hw1q2.exe < .\q2cust24.txt > .\q2cout24.txt
+cmake-build-debug-mingw\hw1q2.exe < .\q2cust25.txt > .\q2cout25.txt

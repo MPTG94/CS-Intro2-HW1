@@ -56,7 +56,12 @@ int main() {
             i += 1;
         } else if (i + 2 < MAX_NUM_LENGTH) {
 //            printf("Checking 3 digit\n");
+//            if (find_num_digits(temp) == 1) {
+//                temp = arr[i+2] * 100 + arr[i+1] * 10;
+//            } else {
             temp = temp * 10 + arr[i + 2];
+//            }
+//            printf("temp is: %d\n", temp);
             if (check_legal_three_digit_char(temp, printed) == 1) {
                 printed = 1;
                 i += 2;
@@ -118,9 +123,10 @@ int check_legal_three_digit_char(int num, int printed) {
     num = num / 10;
     reverse = reverse * 10 + num % 10;
     num = num / 10;
-    reverse = reverse * 10 + num % 10;
     if (digits == 2) {
         reverse = reverse * 10;
+    } else {
+        reverse = reverse * 10 + num % 10;
     }
     if (reverse >= LOWER_A && reverse <= LOWER_Z) {
         if (printed == 0) {
