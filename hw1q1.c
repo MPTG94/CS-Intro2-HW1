@@ -119,6 +119,7 @@ int validate_id() {
     } else {
         result = TEN - sum % MOD_10;
     }
+    printf("\n");
     print_validate_id_input(user_check_digit);
     print_validate_id_result(result);
     if (result == user_check_digit) {
@@ -155,7 +156,6 @@ void print_calculating_check_digit() {
 void print_validating_id() {
     printf("\n");
     printf("Validating ID, please enter 9 digits ID:\n");
-    printf("\n");
 }
 
 void print_check_digit_result(int res) {
@@ -177,7 +177,7 @@ void print_legal_id_message() {
 }
 
 void print_illegal_id_message() {
-    printf("Illegal ID\n");
+    printf("Illegal ID :(\n");
 }
 
 void print_error_message() {
